@@ -38,7 +38,7 @@ class Modifier
 		index_of_key = headers.index('Clicks')
 		content = content_as_table.sort_by { |a| -a[index_of_key].to_i }
 		CSVOperations.write(content, headers, output)
-		return output
+		output
 	end
 
 	def modify(output, input)
@@ -153,30 +153,6 @@ class Modifier
 		end
 		result
 	end
-
-	# # CSV related
-	# def parse(file)
-	# 	CSV.read(file, DEFAULT_CSV_OPTIONS)
-	# end
-  #
-	# # CSV related
-	# def lazy_read(file)
-	# 	Enumerator.new do |yielder|
-	# 		CSV.foreach(file, DEFAULT_CSV_OPTIONS) do |row|
-	# 			yielder.yield(row)
-	# 		end
-	# 	end
-	# end
-  #
-	# # CSV related
-	# def write(content, headers, output)
-	# 	CSV.open(output, "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
-	# 		csv << headers
-	# 		content.each do |row|
-	# 			csv << row
-	# 		end
-	# 	end
-	# end
 
 end
 
