@@ -28,8 +28,8 @@ class Modifier
   LINES_PER_FILE = 120000.freeze
 
 	# sale_amount
-	def initialize(saleamount_factor, cancellation_factor)
-		@saleamount_factor = saleamount_factor
+	def initialize(sale_amount_factor, cancellation_factor)
+		@sale_amount_factor = sale_amount_factor
 		@cancellation_factor = cancellation_factor
 	end
 
