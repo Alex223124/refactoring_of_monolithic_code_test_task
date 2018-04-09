@@ -207,7 +207,9 @@ class Modifier
 end
 
 # name it "run" and put in separate folder
-modified = input = latest('project_2012-07-27_2012-10-10_performancedata')
+directory = "test_data"
+
+modified = input = latest(directory)
 modification_factor = 1
 cancellaction_factor = 0.4
 modifier = Modifier.new(modification_factor, cancellaction_factor)
