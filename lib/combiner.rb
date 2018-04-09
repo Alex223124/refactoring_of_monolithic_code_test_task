@@ -20,6 +20,8 @@ class Combiner
 			done = enumerators.all? { |enumerator| enumerator.nil? }
 			while not done
 				last_values.each_with_index do |value, index|
+
+					# method
 					if value.nil? and not enumerators[index].nil?
 						begin
 							last_values[index] = enumerators[index].next
@@ -27,11 +29,14 @@ class Combiner
 							enumerators[index] = nil
 						end
 					end
+
 				end
 
 				done = enumerators.all? { |enumerator| enumerator.nil? } and last_values.compact.empty?
 				unless done
 					min_key = last_values.map { |e| key(e) }.min do |a, b|
+
+						# method
 						if a.nil? and b.nil?
 							0
 						elsif a.nil?
@@ -41,14 +46,18 @@ class Combiner
 						else
 							a <=> b
 						end
+
 					end
 					values = Array.new(last_values.size)
+
+					# method
 					last_values.each_with_index do |value, index|
 						if key(value) == min_key
 							values[index] = value
 							last_values[index] = nil
 						end
 					end
+
 					yielder.yield(values)
 				end
 			end
