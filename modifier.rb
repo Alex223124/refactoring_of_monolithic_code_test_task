@@ -1,21 +1,20 @@
+require 'pry'
+
 require File.expand_path('lib/combiner',File.dirname(__FILE__))
 require 'csv'
 require 'date'
+require "./lib/file_input_parser"
 
 # what latest?
 def latest(name)
-  files = Dir["#{ ENV["HOME"] }/workspace/*#{name}*.txt"]
-
+	files = FileInputParser.new(name)
   files.sort_by! do |file|
     last_date = /\d+-\d+-\d+_[[:alpha:]]+\.txt$/.match file
-    last_date = last_date.to_s.match /\d+-\d+-\d+/
+		last_date = last_date.to_s.match /\d+-\d+-\d+/
 
     date = DateTime.parse(last_date.to_s)
     date
   end
-
-	# before alll  + raise
-  throw RuntimeError if files.empty?
 
   files.last
 end
