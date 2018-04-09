@@ -6,17 +6,10 @@ require 'date'
 require "./lib/file_input_parser"
 
 # what latest?
+# name = => "project_2012-07-27_2012-10-10_performancedata"
 def latest(name)
 	files = FileInputParser.new(name)
-  files.sort_by! do |file|
-    last_date = /\d+-\d+-\d+_[[:alpha:]]+\.txt$/.match file
-		last_date = last_date.to_s.match /\d+-\d+-\d+/
-
-    date = DateTime.parse(last_date.to_s)
-    date
-  end
-
-  files.last
+	files.latest
 end
 
 class String
