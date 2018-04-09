@@ -2,6 +2,7 @@ require File.expand_path('lib/combiner',File.dirname(__FILE__))
 require 'csv'
 require 'date'
 
+# what latest?
 def latest(name)
   files = Dir["#{ ENV["HOME"] }/workspace/*#{name}*.txt"]
 
@@ -13,18 +14,22 @@ def latest(name)
     date
   end
 
+	# before alll  + raise
   throw RuntimeError if files.empty?
 
   files.last
 end
 
 class String
+	# formatting "something"
 	def from_german_to_f
 		self.gsub(',', '.').to_f
 	end
 end
 
 class Float
+
+	# fortmattng "something"
 	def to_german_s
 		self.to_s.gsub('.', ',')
 	end
@@ -32,28 +37,43 @@ end
 
 class Modifier
 
+	# ?
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'
+
+	# ?
 	LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type', 'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND', 'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD']
+
+	# ?
 	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos']
+
+	# ?
 	INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks', 'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks']
+
+	# ? float
 	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos']
 
+	# +
   LINES_PER_FILE = 120000
 
+	# sale_amount
 	def initialize(saleamount_factor, cancellation_factor)
 		@saleamount_factor = saleamount_factor
 		@cancellation_factor = cancellation_factor
 	end
+
+
 
 	def modify(output, input)
 		input = sort(input)
 
 		input_enumerator = lazy_read(input)
 
+		# method
 		combiner = Combiner.new do |value|
 			value[KEYWORD_UNIQUE_ID]
 		end.combine(input_enumerator)
 
+		# method
 		merger = Enumerator.new do |yielder|
 			while true
 				begin
@@ -69,6 +89,8 @@ class Modifier
     done = false
     file_index = 0
     file_name = output.gsub('.txt', '')
+
+		# while not done???
     while not done do
 		  CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
 			  headers_written = false
@@ -95,8 +117,11 @@ class Modifier
 
 	private
 
+	# combine what?
 	def combine(merged)
 		result = []
+
+		# do we need don't care variable here?
 		merged.each do |_, hash|
 			result << combine_values(hash)
 		end
@@ -104,18 +129,27 @@ class Modifier
 	end
 
 	def combine_values(hash)
+
+		# we rebuilding hash here
 		LAST_VALUE_WINS.each do |key|
+			# key has last?
 			hash[key] = hash[key].last
 		end
+
 		LAST_REAL_VALUE_WINS.each do |key|
+			# remove "not" and "or"
 			hash[key] = hash[key].select {|v| not (v.nil? or v == 0 or v == '0' or v == '')}.last
 		end
+
 		INT_VALUES.each do |key|
 			hash[key] = hash[key][0].to_s
 		end
+
 		FLOAT_VALUES.each do |key|
+			# useless - from_german_to_f.to_german_s ?
 			hash[key] = hash[key][0].from_german_to_f.to_german_s
 		end
+
 		['number of commissions'].each do |key|
 			hash[key] = (@cancellation_factor * hash[key][0].from_german_to_f).to_german_s
 		end
@@ -143,6 +177,7 @@ class Modifier
 		result
 	end
 
+	# to top
 	DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }
 
 	def parse(file)
@@ -167,6 +202,7 @@ class Modifier
 	end
 
 	public
+	# to top
 	def sort(file)
 		output = "#{file}.sorted"
 		content_as_table = parse(file)
@@ -178,6 +214,7 @@ class Modifier
 	end
 end
 
+# name it "run" and put in separate folder
 modified = input = latest('project_2012-07-27_2012-10-10_performancedata')
 modification_factor = 1
 cancellaction_factor = 0.4
