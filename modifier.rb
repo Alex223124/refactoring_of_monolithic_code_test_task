@@ -19,11 +19,11 @@ class Modifier
 								'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
 	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
   LINES_PER_FILE = 120000.freeze
-	CANCELLATION_FACTOR = ['number of commissions']
+	CANCELLATION_FACTOR = ['number of commissions'].freeze
 	CANCELLATION_AND_SALE_AMOUNT_FACTOR = ['Commission Value', 'ACCOUNT - Commission Value',
 																				 'CAMPAIGN - Commission Value', 'BRAND - Commission Value',
 																				 'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value',
-																				 'KEYWORD - Commission Value']
+																				 'KEYWORD - Commission Value'].freeze
 
 	# sale_amount
 	def initialize(sale_amount_factor, cancellation_factor)
