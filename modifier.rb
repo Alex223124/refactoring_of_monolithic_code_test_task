@@ -30,22 +30,27 @@ end
 class Modifier
 
 	# ?
-	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'
+	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
+
+	DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }.freeze
 
 	# ?
-	LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type', 'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND', 'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD']
+	LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type',
+										 'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND',
+										 'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD'].freeze
 
 	# ?
-	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos']
+	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos'].freeze
 
 	# ?
-	INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks', 'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks']
+	INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks',
+								'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
 
 	# ? float
-	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos']
+	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
 
 	# +
-  LINES_PER_FILE = 120000
+  LINES_PER_FILE = 120000.freeze
 
 	# sale_amount
 	def initialize(saleamount_factor, cancellation_factor)
@@ -168,9 +173,6 @@ class Modifier
 		end
 		result
 	end
-
-	# to top
-	DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }
 
 	def parse(file)
 		CSV.read(file, DEFAULT_CSV_OPTIONS)
