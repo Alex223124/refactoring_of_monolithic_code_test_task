@@ -7,13 +7,6 @@ require "./lib/file_input_parser"
 require "./lib/standard_classes_extensions/float.rb"
 require "./lib/standard_classes_extensions/string.rb"
 
-# what latest?
-# name = => "project_2012-07-27_2012-10-10_performancedata"
-def latest(name)
-	files = FileInputParser.new(name)
-	files.latest
-end
-
 class Modifier
 
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
@@ -187,7 +180,7 @@ end
 # name it "run" and put in separate folder
 directory = "test_data"
 
-modified = input = latest(directory)
+modified = input = FileInputParser.new(directory).latest
 modification_factor = 1
 cancellaction_factor = 0.4
 modifier = Modifier.new(modification_factor, cancellaction_factor)
