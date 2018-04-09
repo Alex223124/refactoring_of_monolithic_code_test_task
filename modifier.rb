@@ -4,27 +4,14 @@ require File.expand_path('lib/combiner',File.dirname(__FILE__))
 require 'csv'
 require 'date'
 require "./lib/file_input_parser"
+require "./lib/standard_classes_extensions/float.rb"
+require "./lib/standard_classes_extensions/string.rb"
 
 # what latest?
 # name = => "project_2012-07-27_2012-10-10_performancedata"
 def latest(name)
 	files = FileInputParser.new(name)
 	files.latest
-end
-
-class String
-	# formatting "something"
-	def from_german_to_f
-		self.gsub(',', '.').to_f
-	end
-end
-
-class Float
-
-	# fortmattng "something"
-	def to_german_s
-		self.to_s.gsub('.', ',')
-	end
 end
 
 class Modifier
