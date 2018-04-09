@@ -7,6 +7,7 @@ require "./lib/file_input_parser"
 require "./lib/standard_classes_extensions/float.rb"
 require "./lib/standard_classes_extensions/string.rb"
 require "./lib/csv_operations"
+require "./lib/rows_to_hash_service"
 
 class Modifier
 
@@ -54,7 +55,7 @@ class Modifier
 			while true
 				begin
 					list_of_rows = combiner.next
-					merged = combine_hashes(list_of_rows)
+					merged = RowsToHashService.new(list_of_rows).run
 					yielder.yield(combine_values(merged))
 				rescue StopIteration
 					break
@@ -108,7 +109,6 @@ class Modifier
 		# we rebuilding hash here
 		LAST_VALUE_WINS.each do |key|
 			# key has last?
-			# здесь падает
 			hash[key] = hash[key].last
 		end
 
@@ -137,28 +137,11 @@ class Modifier
 		hash
 	end
 
-	def combine_hashes(list_of_rows)
-		keys = []
-		list_of_rows.each do |row|
-			next if row.nil?
-			row.headers.each do |key|
-				keys << key
-			end
-		end
-		result = {}
-		keys.each do |key|
-			result[key] = []
-			list_of_rows.each do |row|
-				result[key] << (row.nil? ? nil : row[key])
-			end
-		end
-		result
-	end
 
 end
 
 # name it "run" and put in separate folder
-directory = "test_data_three"
+directory = "four"
 
 modified = input = FileInputParser.new(directory).latest
 modification_factor = 1
