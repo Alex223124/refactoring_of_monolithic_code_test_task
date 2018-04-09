@@ -6,11 +6,11 @@ require 'date'
 require "./lib/file_input_parser"
 require "./lib/standard_classes_extensions/float.rb"
 require "./lib/standard_classes_extensions/string.rb"
+require "./lib/csv_operations"
 
 class Modifier
 
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
-	DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }.freeze
 	LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type',
 										 'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND',
 										 'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD'].freeze
@@ -33,17 +33,17 @@ class Modifier
 
 	def sort(file)
 		output = "#{file}.sorted"
-		content_as_table = parse(file)
+		content_as_table = CSVOperations.parse(file)
 		headers = content_as_table.headers
 		index_of_key = headers.index('Clicks')
 		content = content_as_table.sort_by { |a| -a[index_of_key].to_i }
-		write(content, headers, output)
+		CSVOperations.write(content, headers, output)
 		return output
 	end
 
 	def modify(output, input)
 		input = sort(input)
-		input_enumerator = lazy_read(input)
+		input_enumerator = CSVOperations.lazy_read(input)
 
 		# method
 		combiner = Combiner.new do |value|
@@ -154,26 +154,29 @@ class Modifier
 		result
 	end
 
-	def parse(file)
-		CSV.read(file, DEFAULT_CSV_OPTIONS)
-	end
-
-	def lazy_read(file)
-		Enumerator.new do |yielder|
-			CSV.foreach(file, DEFAULT_CSV_OPTIONS) do |row|
-				yielder.yield(row)
-			end
-		end
-	end
-
-	def write(content, headers, output)
-		CSV.open(output, "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
-			csv << headers
-			content.each do |row|
-				csv << row
-			end
-		end
-	end
+	# # CSV related
+	# def parse(file)
+	# 	CSV.read(file, DEFAULT_CSV_OPTIONS)
+	# end
+  #
+	# # CSV related
+	# def lazy_read(file)
+	# 	Enumerator.new do |yielder|
+	# 		CSV.foreach(file, DEFAULT_CSV_OPTIONS) do |row|
+	# 			yielder.yield(row)
+	# 		end
+	# 	end
+	# end
+  #
+	# # CSV related
+	# def write(content, headers, output)
+	# 	CSV.open(output, "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
+	# 		csv << headers
+	# 		content.each do |row|
+	# 			csv << row
+	# 		end
+	# 	end
+	# end
 
 end
 
