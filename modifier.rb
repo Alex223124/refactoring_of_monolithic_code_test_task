@@ -25,7 +25,6 @@ class Modifier
 																				 'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value',
 																				 'KEYWORD - Commission Value'].freeze
 
-	# sale_amount
 	def initialize(sale_amount_factor, cancellation_factor)
 		@sale_amount_factor = sale_amount_factor
 		@cancellation_factor = cancellation_factor
@@ -109,6 +108,7 @@ class Modifier
 		# we rebuilding hash here
 		LAST_VALUE_WINS.each do |key|
 			# key has last?
+			# здесь падает
 			hash[key] = hash[key].last
 		end
 
@@ -131,8 +131,9 @@ class Modifier
 		end
 
 		CANCELLATION_AND_SALE_AMOUNT_FACTOR.each do |key|
-			hash[key] = (@cancellation_factor * @saleamount_factor * hash[key][0].from_german_to_f).to_german_s
+			hash[key] = (@cancellation_factor * @sale_amount_factor * hash[key][0].from_german_to_f).to_german_s
 		end
+
 		hash
 	end
 
@@ -157,7 +158,7 @@ class Modifier
 end
 
 # name it "run" and put in separate folder
-directory = "test_data"
+directory = "test_data_three"
 
 modified = input = FileInputParser.new(directory).latest
 modification_factor = 1
