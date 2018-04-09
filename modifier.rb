@@ -26,6 +26,11 @@ class Modifier
 								'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
 	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
   LINES_PER_FILE = 120000.freeze
+	CANCELLATION_FACTOR = ['number of commissions']
+	CANCELLATION_AND_SALE_AMOUNT_FACTOR = ['Commission Value', 'ACCOUNT - Commission Value',
+																				 'CAMPAIGN - Commission Value', 'BRAND - Commission Value',
+																				 'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value',
+																				 'KEYWORD - Commission Value']
 
 	# sale_amount
 	def initialize(sale_amount_factor, cancellation_factor)
@@ -108,7 +113,6 @@ class Modifier
 	end
 
 	def combine_values(hash)
-
 		# we rebuilding hash here
 		LAST_VALUE_WINS.each do |key|
 			# key has last?
@@ -129,10 +133,11 @@ class Modifier
 			hash[key] = hash[key][0].from_german_to_f.to_german_s
 		end
 
-		['number of commissions'].each do |key|
+		CANCELLATION_FACTOR.each do |key|
 			hash[key] = (@cancellation_factor * hash[key][0].from_german_to_f).to_german_s
 		end
-		['Commission Value', 'ACCOUNT - Commission Value', 'CAMPAIGN - Commission Value', 'BRAND - Commission Value', 'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value', 'KEYWORD - Commission Value'].each do |key|
+
+		CANCELLATION_AND_SALE_AMOUNT_FACTOR.each do |key|
 			hash[key] = (@cancellation_factor * @saleamount_factor * hash[key][0].from_german_to_f).to_german_s
 		end
 		hash
