@@ -16,27 +16,15 @@ end
 
 class Modifier
 
-	# ?
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
-
 	DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }.freeze
-
-	# ?
 	LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type',
 										 'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND',
 										 'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD'].freeze
-
-	# ?
 	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos'].freeze
-
-	# ?
 	INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks',
 								'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
-
-	# ? float
 	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
-
-	# +
   LINES_PER_FILE = 120000.freeze
 
 	# sale_amount
@@ -45,11 +33,18 @@ class Modifier
 		@cancellation_factor = cancellation_factor
 	end
 
-
+	def sort(file)
+		output = "#{file}.sorted"
+		content_as_table = parse(file)
+		headers = content_as_table.headers
+		index_of_key = headers.index('Clicks')
+		content = content_as_table.sort_by { |a| -a[index_of_key].to_i }
+		write(content, headers, output)
+		return output
+	end
 
 	def modify(output, input)
 		input = sort(input)
-
 		input_enumerator = lazy_read(input)
 
 		# method
@@ -182,17 +177,6 @@ class Modifier
 		end
 	end
 
-	public
-	# to top
-	def sort(file)
-		output = "#{file}.sorted"
-		content_as_table = parse(file)
-		headers = content_as_table.headers
-		index_of_key = headers.index('Clicks')
-		content = content_as_table.sort_by { |a| -a[index_of_key].to_i }
-		write(content, headers, output)
-		return output
-	end
 end
 
 # name it "run" and put in separate folder
