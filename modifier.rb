@@ -68,7 +68,7 @@ class Modifier
     file_name = output.gsub('.txt', '')
 
 		# while not done???
-    while not done do
+    while !done do
 		  CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
 			  headers_written = false
         line_count = 0
