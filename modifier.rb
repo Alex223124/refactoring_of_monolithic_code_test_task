@@ -68,12 +68,11 @@ class Modifier
 		input_enumerator = CSVOperations.lazy_read(input)
 		combiner = combine_enumerator(input_enumerator)
 		merger = enumerate_list_of_rows(combiner)
-		
+
     done = false
     file_index = 0
     file_name = output.gsub('.txt', '')
 
-		# while not done???
     while !done do
 		  CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
 			  headers_written = false

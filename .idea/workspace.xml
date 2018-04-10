@@ -36,8 +36,8 @@
       <file leaf-file-name="modifier.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modifier.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="70" column="4" lean-forward="true" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+            <state relative-caret-position="162">
+              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -322,12 +322,12 @@
       <updated>1523278718591</updated>
       <workItem from="1523278719908" duration="5128000" />
       <workItem from="1523288726650" duration="16977000" />
-      <workItem from="1523367432977" duration="2324000" />
+      <workItem from="1523367432977" duration="2351000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24429000" />
+    <option name="totallyTimeSpent" value="24456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="80" width="1922" height="1029" extended-state="6" />
@@ -483,8 +483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modifier.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="70" column="4" lean-forward="true" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+        <state relative-caret-position="162">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding />
         </state>
       </provider>
