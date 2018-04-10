@@ -76,7 +76,7 @@ class Modifier
 		file_index = 0
 		file_name = remove_file_extension_from_(output)
 
-    while !done do
+		until done do
 		  CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
 			  headers_written = false
         line_count = 0
