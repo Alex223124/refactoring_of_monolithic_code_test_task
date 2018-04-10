@@ -14,7 +14,7 @@ class Combiner
 		Enumerator.new do |yielder|
 			last_values = Array.new(enumerators.size)
 			done = enumerators.all? { |enumerator| enumerator.nil? }
-			while not done
+			until done
 				last_values.each_with_index do |value, index|
 
 					# method
@@ -32,27 +32,14 @@ class Combiner
 
 				unless done
 
-					min_key = get_keys_from_csv(last_values).min do |a, b|
-
-						# method
-						if a.nil? and b.nil?
-							0
-						elsif a.nil?
-							1
-						elsif b.nil?
-							-1
-						else
-							a <=> b
-						end
-
-					end
-					values = Array.new(last_values.size)
+					keys = get_keys_from_csv(last_values)
+					min_key = filtering_min_key(keys)
+					values = create_array_by_(last_values.size)
 
 					# method
 					last_values.each_with_index do |value, index|
 						if get_key(value) == min_key
 							values[index] = value
-							last_values[index] = nil
 						end
 					end
 
@@ -63,6 +50,10 @@ class Combiner
 	end
 
 	private
+
+	def create_array_by_(size)
+		Array.new(size)
+	end
 
 	def get_key(value)
 		@key_extractor.call(value) if value
@@ -76,5 +67,18 @@ class Combiner
 		ens.all? { |enumerator| enumerator.nil? } and lvs.compact.empty?
 	end
 
+	def filtering_min_key(keys)
+		keys.min do |a, b|
+			if a.nil? and b.nil?
+				0
+			elsif a.nil?
+				1
+			elsif b.nil?
+				-1
+			else
+				a <=> b
+			end
+		end
+	end
 
 end
