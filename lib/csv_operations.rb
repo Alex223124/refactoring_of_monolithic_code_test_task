@@ -2,6 +2,7 @@ class CSVOperations
 
   LINES_PER_FILE = 120000.freeze
   DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }.freeze
+  DEFAULT_CSV_WRITE_OPTIONS = DEFAULT_CSV_OPTIONS.merge(:row_sep => "\r\n")
 
   def self.parse(file)
     CSV.read(file, DEFAULT_CSV_OPTIONS)
@@ -16,7 +17,7 @@ class CSVOperations
   end
 
   def self.write(content, headers, output)
-    CSV.open(output, "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
+    CSV.open(output, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
       csv << headers
       content.each do |row|
         csv << row
@@ -30,7 +31,7 @@ class CSVOperations
     file_name = remove_file_extension_from_(output)
 
     until done do
-      CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
+      CSV.open(file_name + "_#{file_index}.txt", "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
         headers_written = false
         line_count = 0
         while line_count < LINES_PER_FILE

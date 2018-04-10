@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84612dd4-f639-4c82-8f23-df4917d06cd9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/csv_operations.rb" afterPath="$PROJECT_DIR$/lib/csv_operations.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modifier.rb" afterPath="$PROJECT_DIR$/modifier.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,8 +56,8 @@
       <file leaf-file-name="csv_operations.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/csv_operations.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="23" />
+            <state relative-caret-position="142">
+              <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -326,12 +324,12 @@
       <updated>1523278718591</updated>
       <workItem from="1523278719908" duration="5128000" />
       <workItem from="1523288726650" duration="16977000" />
-      <workItem from="1523367432977" duration="4751000" />
+      <workItem from="1523367432977" duration="4984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26856000" />
+    <option name="totallyTimeSpent" value="27089000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="80" width="1922" height="1029" extended-state="6" />
@@ -487,8 +485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/csv_operations.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="23" />
+        <state relative-caret-position="142">
+          <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
           <folding />
         </state>
       </provider>
