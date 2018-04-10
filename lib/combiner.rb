@@ -12,8 +12,10 @@ class Combiner
 
 	def combine(*enumerators)
 		Enumerator.new do |yielder|
-			last_values = Array.new(enumerators.size)
-			done = enumerators.all? { |enumerator| enumerator.nil? }
+			last_values = create_array_by_(enumerators.size)
+
+			done = enumerators_present?(enumerators)
+
 			until done
 				last_values.each_with_index do |value, index|
 
@@ -28,7 +30,7 @@ class Combiner
 
 				end
 
-				done = check_enumerators_and_last_values(enumerators, last_values)
+				done = enumerators_present?(enumerators) && last_values_present?(last_values)
 
 				unless done
 
@@ -40,6 +42,7 @@ class Combiner
 					last_values.each_with_index do |value, index|
 						if get_key(value) == min_key
 							values[index] = value
+							last_values[index] = nil
 						end
 					end
 
@@ -63,8 +66,12 @@ class Combiner
 		last_values.map { |e| get_key(e) }
 	end
 
-	def check_enumerators_and_last_values(ens, lvs)
-		ens.all? { |enumerator| enumerator.nil? } and lvs.compact.empty?
+	def enumerators_present?(ens)
+		ens.all? { |enumerator| enumerator.nil? }
+	end
+
+	def last_values_present?(lvs)
+		lvs.compact.empty?
 	end
 
 	def filtering_min_key(keys)
