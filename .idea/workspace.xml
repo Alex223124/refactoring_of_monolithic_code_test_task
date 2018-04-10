@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84612dd4-f639-4c82-8f23-df4917d06cd9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/report_recalculation_service.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/csv_operations.rb" afterPath="$PROJECT_DIR$/lib/csv_operations.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modifier.rb" afterPath="$PROJECT_DIR$/modifier.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +38,18 @@
       <file leaf-file-name="modifier.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modifier.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="83" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+            <state relative-caret-position="237">
+              <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="6" selection-end-line="74" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="report_recalculation_service.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/report_recalculation_service.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="78" column="3" lean-forward="true" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -47,18 +58,18 @@
       <file leaf-file-name="rows_to_hash_service.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/rows_to_hash_service.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
+            <state relative-caret-position="540">
               <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="csv_operations.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="csv_operations.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/csv_operations.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+            <state relative-caret-position="864">
+              <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -97,7 +108,7 @@
       <file leaf-file-name="combiner.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
+            <state relative-caret-position="178">
               <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
               <folding />
             </state>
@@ -110,25 +121,33 @@
     <findStrings>
       <find>binding.pry</find>
       <find>sale_amo</find>
-      <find>CANCELLATION_AND_SALE_AMOUNT_FACTOR</find>
       <find>latest</find>
       <find>parse</find>
       <find>lazy_read</find>
       <find>write</find>
       <find>sort</find>
-      <find>combine</find>
       <find>-a</find>
-      <find>KEYWORD_UNIQUE_ID</find>
       <find>CSV.open(file_name + &quot;_#{file_index}.txt</find>
-      <find>@sale_amount_factor</find>
-      <find>combine_values</find>
-      <find>combine_hashes</find>
       <find>create_hashes</find>
-      <find>binding</find>
       <find>list_of_rows</find>
       <find>CSV.open(file_name + &quot;_#{file_index}.txt&quot;,</find>
       <find>CSVO</find>
       <find>CSV</find>
+      <find>CANCELLATION_AND_SALE_AMOUNT_FACTOR</find>
+      <find>set_comission_types_values</find>
+      <find>KEYWORD_UNIQUE_ID</find>
+      <find>LAST_VALUE_WINS</find>
+      <find>INT_VALUES</find>
+      <find>FLOAT_VALUES</find>
+      <find>number of commissions</find>
+      <find>COMISSION_TYPES</find>
+      <find>CANCELLATION_FACTOR</find>
+      <find>@cancellation_factor</find>
+      <find>@sale_amount_factor</find>
+      <find>combine</find>
+      <find>combine_hashes</find>
+      <find>binding</find>
+      <find>combine_values</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -153,8 +172,10 @@
         <option value="$PROJECT_DIR$/lib/file_input_parser.rb" />
         <option value="$PROJECT_DIR$/lib/hash_operations.rb" />
         <option value="$PROJECT_DIR$/lib/rows_to_hash_service.rb" />
-        <option value="$PROJECT_DIR$/modifier.rb" />
         <option value="$PROJECT_DIR$/lib/csv_operations.rb" />
+        <option value="$PROJECT_DIR$/lib/report_recalculation.rb" />
+        <option value="$PROJECT_DIR$/modifier.rb" />
+        <option value="$PROJECT_DIR$/lib/report_recalculation_service.rb" />
       </list>
     </option>
   </component>
@@ -325,12 +346,12 @@
       <updated>1523278718591</updated>
       <workItem from="1523278719908" duration="5128000" />
       <workItem from="1523288726650" duration="16977000" />
-      <workItem from="1523367432977" duration="5043000" />
+      <workItem from="1523367432977" duration="11531000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27148000" />
+    <option name="totallyTimeSpent" value="33636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="80" width="1922" height="1029" extended-state="6" />
@@ -420,14 +441,6 @@
     <entry file="file://$PROJECT_DIR$/input_files/project_2011-07-27_2011-10-10_performancedata.txt" />
     <entry file="file://$PROJECT_DIR$/input_files/project_2012-07-27_2012-10-10_performancedata.txt" />
     <entry file="file://$PROJECT_DIR$/input_files/project_2013-07-27_2013-10-10_performancedata.txt" />
-    <entry file="file://$PROJECT_DIR$/lib/file_input_parser.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="7" lean-forward="false" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/standard_classes_extensions/float.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -444,18 +457,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spec/combiner_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/file_input_parser.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="7" lean-forward="false" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/csv_operations.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
+        <state relative-caret-position="178">
           <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/combiner_spec.rb">
+    <entry file="file://$PROJECT_DIR$/lib/rows_to_hash_service.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+        <state relative-caret-position="540">
+          <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -468,26 +505,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/rows_to_hash_service.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modifier.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="83" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+        <state relative-caret-position="237">
+          <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="6" selection-end-line="74" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/csv_operations.rb">
+    <entry file="file://$PROJECT_DIR$/lib/report_recalculation_service.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        <state relative-caret-position="525">
+          <caret line="78" column="3" lean-forward="true" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
           <folding />
         </state>
       </provider>

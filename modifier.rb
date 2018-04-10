@@ -8,22 +8,12 @@ require "./lib/standard_classes_extensions/float.rb"
 require "./lib/standard_classes_extensions/string.rb"
 require "./lib/csv_operations"
 require "./lib/rows_to_hash_service"
+require "./lib/report_recalculation_service"
 
 class Modifier
 
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
-	LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type',
-										 'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND',
-										 'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD'].freeze
 	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos'].freeze
-	INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks',
-								'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
-	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
-	CANCELLATION_FACTOR = ['number of commissions'].freeze
-	CANCELLATION_AND_SALE_AMOUNT_FACTOR = ['Commission Value', 'ACCOUNT - Commission Value',
-																				 'CAMPAIGN - Commission Value', 'BRAND - Commission Value',
-																				 'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value',
-																				 'KEYWORD - Commission Value'].freeze
 
 	def initialize(sale_amount_factor, cancellation_factor)
 		@sale_amount_factor = sale_amount_factor
@@ -52,8 +42,8 @@ class Modifier
 			while true
 				begin
 					list_of_rows = combiner.next
-					merged = RowsToHashService.new(list_of_rows).run
-					yielder.yield(combine_values(merged))
+					merged_hashes = RowsToHashService.new(list_of_rows).run
+					yielder.yield(combine_values_for_(merged_hashes))
 				rescue StopIteration
 					break
 				end
@@ -77,43 +67,14 @@ class Modifier
 
 		# do we need don't care variable here?
 		merged.each do |_, hash|
-			result << combine_values(hash)
+			result << combine_values_for_(hash)
 		end
 		result
 	end
 
-	def combine_values(hash)
-		# we rebuilding hash here
-		LAST_VALUE_WINS.each do |key|
-			# key has last?
-			hash[key] = hash[key].last
-		end
-
-		LAST_REAL_VALUE_WINS.each do |key|
-			# remove "not" and "or"
-			hash[key] = hash[key].select {|v| not (v.nil? or v == 0 or v == '0' or v == '')}.last
-		end
-
-		INT_VALUES.each do |key|
-			hash[key] = hash[key][0].to_s
-		end
-
-		FLOAT_VALUES.each do |key|
-			# useless - from_german_to_f.to_german_s ?
-			hash[key] = hash[key][0].from_german_to_f.to_german_s
-		end
-
-		CANCELLATION_FACTOR.each do |key|
-			hash[key] = (@cancellation_factor * hash[key][0].from_german_to_f).to_german_s
-		end
-
-		CANCELLATION_AND_SALE_AMOUNT_FACTOR.each do |key|
-			hash[key] = (@cancellation_factor * @sale_amount_factor * hash[key][0].from_german_to_f).to_german_s
-		end
-
-		hash
+	def combine_values_for_(hash)
+		ReportRecalculationService.new(hash, @cancellation_factor, @sale_amount_factor).calculate
 	end
-
 
 end
 
