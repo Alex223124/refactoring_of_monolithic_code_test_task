@@ -20,7 +20,7 @@ class Combiner
 				last_values.each_with_index do |value, index|
 
 					# method
-					if value.nil? and not enumerators[index].nil?
+					if value.nil? && !enumerators[index].nil?
 						begin
 							last_values[index] = enumerators[index].next
 						rescue StopIteration
