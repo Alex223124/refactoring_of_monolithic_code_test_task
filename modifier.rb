@@ -62,6 +62,9 @@ class Modifier
 		end
 	end
 
+	def remove_file_extension_from_(path, file_extension = '.txt')
+		path.gsub(file_extension, '')
+	end
 
 	def modify(output, input)
 		input = sort(input)
@@ -70,8 +73,8 @@ class Modifier
 		merger = enumerate_list_of_rows(combiner)
 
     done = false
-    file_index = 0
-    file_name = output.gsub('.txt', '')
+		file_index = 0
+		file_name = remove_file_extension_from_(output)
 
     while !done do
 		  CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
