@@ -11,7 +11,7 @@ class Combiner
 	end
 
 	def key(value)
-		value.nil? ? nil : @key_extractor.call(value)
+		@key_extractor.call(value) if value
 	end
 
 	def combine(*enumerators)

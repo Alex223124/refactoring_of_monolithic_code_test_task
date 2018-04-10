@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84612dd4-f639-4c82-8f23-df4917d06cd9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/report_recalculation_service.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modifier.rb" afterPath="$PROJECT_DIR$/modifier.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/combiner.rb" afterPath="$PROJECT_DIR$/lib/combiner.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,18 +37,18 @@
       <file leaf-file-name="modifier.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modifier.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="6" selection-end-line="74" selection-end-column="20" />
+            <state relative-caret-position="-450">
+              <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="report_recalculation_service.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="report_recalculation_service.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/report_recalculation_service.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="78" column="3" lean-forward="true" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
+            <state relative-caret-position="1206">
+              <caret line="67" column="32" lean-forward="true" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -105,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="combiner.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="combiner.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+            <state relative-caret-position="175">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -144,10 +143,10 @@
       <find>CANCELLATION_FACTOR</find>
       <find>@cancellation_factor</find>
       <find>@sale_amount_factor</find>
-      <find>combine</find>
-      <find>combine_hashes</find>
       <find>binding</find>
       <find>combine_values</find>
+      <find>combine_hashes</find>
+      <find>combine</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -168,14 +167,14 @@
         <option value="$PROJECT_DIR$/spec/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/standard_classes_extensions/string.rb" />
         <option value="$PROJECT_DIR$/lib/standard_classes_extensions/float.rb" />
-        <option value="$PROJECT_DIR$/lib/combiner.rb" />
         <option value="$PROJECT_DIR$/lib/file_input_parser.rb" />
         <option value="$PROJECT_DIR$/lib/hash_operations.rb" />
         <option value="$PROJECT_DIR$/lib/rows_to_hash_service.rb" />
         <option value="$PROJECT_DIR$/lib/csv_operations.rb" />
         <option value="$PROJECT_DIR$/lib/report_recalculation.rb" />
-        <option value="$PROJECT_DIR$/modifier.rb" />
         <option value="$PROJECT_DIR$/lib/report_recalculation_service.rb" />
+        <option value="$PROJECT_DIR$/modifier.rb" />
+        <option value="$PROJECT_DIR$/lib/combiner.rb" />
       </list>
     </option>
   </component>
@@ -346,12 +345,12 @@
       <updated>1523278718591</updated>
       <workItem from="1523278719908" duration="5128000" />
       <workItem from="1523288726650" duration="16977000" />
-      <workItem from="1523367432977" duration="11531000" />
+      <workItem from="1523367432977" duration="12401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33636000" />
+    <option name="totallyTimeSpent" value="34506000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="80" width="1922" height="1029" extended-state="6" />
@@ -481,10 +480,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
+    <entry file="file://$PROJECT_DIR$/spec/spec_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        <state relative-caret-position="18">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/report_recalculation_service.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1206">
+          <caret line="67" column="32" lean-forward="true" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -497,26 +504,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/spec_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modifier.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="6" selection-end-line="74" selection-end-column="20" />
+        <state relative-caret-position="-450">
+          <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/report_recalculation_service.rb">
+    <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="78" column="3" lean-forward="true" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
+        <state relative-caret-position="175">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
