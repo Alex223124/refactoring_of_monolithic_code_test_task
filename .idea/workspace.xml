@@ -36,8 +36,8 @@
       <file leaf-file-name="modifier.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modifier.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="37" />
+            <state relative-caret-position="255">
+              <caret line="40" column="31" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -97,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -107,7 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lazy_read</find>
       <find>write</find>
       <find>sort</find>
       <find>-a</find>
@@ -131,12 +130,13 @@
       <find>binding</find>
       <find>combine_values</find>
       <find>combine_hashes</find>
-      <find>combine</find>
       <find>key</find>
       <find>get_keys_from_csv</find>
       <find>binding.pry</find>
       <find>check_enumerators_and_last_values</find>
+      <find>combine</find>
       <find>enumerators_present?</find>
+      <find>Enumerator.new do |yielder|</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -335,12 +335,12 @@
       <updated>1523278718591</updated>
       <workItem from="1523278719908" duration="5128000" />
       <workItem from="1523288726650" duration="16977000" />
-      <workItem from="1523367432977" duration="16146000" />
+      <workItem from="1523367432977" duration="17845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38251000" />
+    <option name="totallyTimeSpent" value="39950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="80" width="1922" height="1029" extended-state="6" />
@@ -494,14 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modifier.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://JavaScript-modules-diagram//media/veracrypt3/Всякие тест задания/0.3/refactoring/.idea">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -519,10 +511,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modifier.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="40" column="31" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
