@@ -37,7 +37,7 @@ class CSVOperations
         while line_count < LINES_PER_FILE
           begin
             merged = merger.next
-            if not headers_written
+            unless headers_written
               csv << merged.keys
               headers_written = true
               line_count +=1
