@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84612dd4-f639-4c82-8f23-df4917d06cd9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/combiner.rb" afterPath="$PROJECT_DIR$/lib/combiner.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,16 +73,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="float.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/standard_classes_extensions/float.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="string.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/standard_classes_extensions/string.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -107,8 +96,8 @@
       <file leaf-file-name="combiner.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="381">
+              <caret line="44" column="21" lean-forward="true" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -118,8 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>binding.pry</find>
-      <find>sale_amo</find>
       <find>latest</find>
       <find>parse</find>
       <find>lazy_read</find>
@@ -147,6 +134,9 @@
       <find>combine_values</find>
       <find>combine_hashes</find>
       <find>combine</find>
+      <find>key</find>
+      <find>get_keys_from_csv</find>
+      <find>binding.pry</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -345,12 +335,12 @@
       <updated>1523278718591</updated>
       <workItem from="1523278719908" duration="5128000" />
       <workItem from="1523288726650" duration="16977000" />
-      <workItem from="1523367432977" duration="12401000" />
+      <workItem from="1523367432977" duration="13280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34506000" />
+    <option name="totallyTimeSpent" value="35385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="80" width="1922" height="1029" extended-state="6" />
@@ -512,10 +502,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://JavaScript-modules-diagram//media/veracrypt3/Всякие тест задания/0.3/refactoring/.idea">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/.idea</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="698.0" y="331.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/combiner.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="381">
+          <caret line="44" column="21" lean-forward="true" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
           <folding />
         </state>
       </provider>

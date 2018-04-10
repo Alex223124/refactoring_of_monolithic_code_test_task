@@ -10,10 +10,6 @@ class Combiner
 		@key_extractor = key_extractor
 	end
 
-	def key(value)
-		@key_extractor.call(value) if value
-	end
-
 	def combine(*enumerators)
 		Enumerator.new do |yielder|
 			last_values = Array.new(enumerators.size)
@@ -32,9 +28,11 @@ class Combiner
 
 				end
 
-				done = enumerators.all? { |enumerator| enumerator.nil? } and last_values.compact.empty?
+				done = check_enumerators_and_last_values(enumerators, last_values)
+
 				unless done
-					min_key = last_values.map { |e| key(e) }.min do |a, b|
+
+					min_key = get_keys_from_csv(last_values).min do |a, b|
 
 						# method
 						if a.nil? and b.nil?
@@ -52,7 +50,7 @@ class Combiner
 
 					# method
 					last_values.each_with_index do |value, index|
-						if key(value) == min_key
+						if get_key(value) == min_key
 							values[index] = value
 							last_values[index] = nil
 						end
@@ -63,4 +61,20 @@ class Combiner
 			end
 		end
 	end
+
+	private
+
+	def get_key(value)
+		@key_extractor.call(value) if value
+	end
+
+	def get_keys_from_csv(last_values)
+		last_values.map { |e| get_key(e) }
+	end
+
+	def check_enumerators_and_last_values(ens, lvs)
+		ens.all? { |enumerator| enumerator.nil? } and lvs.compact.empty?
+	end
+
+
 end
