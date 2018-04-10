@@ -19,7 +19,6 @@ class Modifier
 	INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks',
 								'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
 	FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
-  LINES_PER_FILE = 120000.freeze
 	CANCELLATION_FACTOR = ['number of commissions'].freeze
 	CANCELLATION_AND_SALE_AMOUNT_FACTOR = ['Commission Value', 'ACCOUNT - Commission Value',
 																				 'CAMPAIGN - Commission Value', 'BRAND - Commission Value',
@@ -62,42 +61,12 @@ class Modifier
 		end
 	end
 
-	def remove_file_extension_from_(path, file_extension = '.txt')
-		path.gsub(file_extension, '')
-	end
-
 	def modify(output, input)
 		input = sort(input)
 		input_enumerator = CSVOperations.lazy_read(input)
 		combiner = combine_enumerator(input_enumerator)
 		merger = enumerate_list_of_rows(combiner)
-
-    done = false
-		file_index = 0
-		file_name = remove_file_extension_from_(output)
-
-		until done do
-		  CSV.open(file_name + "_#{file_index}.txt", "wb", { :col_sep => "\t", :headers => :first_row, :row_sep => "\r\n" }) do |csv|
-			  headers_written = false
-        line_count = 0
-			  while line_count < LINES_PER_FILE
-				  begin
-					  merged = merger.next
-					  if not headers_written
-						  csv << merged.keys
-						  headers_written = true
-              line_count +=1
-					  end
-					  csv << merged
-            line_count +=1
-				  rescue StopIteration
-            done = true
-					  break
-				  end
-			  end
-        file_index += 1
-		  end
-    end
+		CSVOperations.write_to_csv(merger, output)
 	end
 
 	private
