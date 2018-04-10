@@ -41,17 +41,15 @@ class Modifier
 		output
 	end
 
-	def modify(output, input)
-		input = sort(input)
-		input_enumerator = CSVOperations.lazy_read(input)
 
-		# method
-		combiner = Combiner.new do |value|
+	def combine_enumerator(input_enumerator)
+		Combiner.new do |value|
 			value[KEYWORD_UNIQUE_ID]
 		end.combine(input_enumerator)
+	end
 
-		# method
-		merger = Enumerator.new do |yielder|
+	def enumerate_list_of_rows(combiner)
+		Enumerator.new do |yielder|
 			while true
 				begin
 					list_of_rows = combiner.next
@@ -62,7 +60,15 @@ class Modifier
 				end
 			end
 		end
+	end
 
+
+	def modify(output, input)
+		input = sort(input)
+		input_enumerator = CSVOperations.lazy_read(input)
+		combiner = combine_enumerator(input_enumerator)
+		merger = enumerate_list_of_rows(combiner)
+		
     done = false
     file_index = 0
     file_name = output.gsub('.txt', '')
