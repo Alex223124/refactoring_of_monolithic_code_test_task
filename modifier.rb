@@ -30,13 +30,6 @@ class Modifier
 		output
 	end
 
-
-	def combine_enumerator(input_enumerator)
-		Combiner.new do |value|
-			value[KEYWORD_UNIQUE_ID]
-		end.combine(input_enumerator)
-	end
-
 	def enumerate_list_of_rows(combiner)
 		Enumerator.new do |yielder|
 			while true
@@ -54,8 +47,7 @@ class Modifier
 	def modify(output, input)
 		input = sort(input)
 		input_enumerator = CSVOperations.lazy_read(input)
-		combiner = combine_enumerator(input_enumerator)
-		merger = enumerate_list_of_rows(combiner)
+		merger = enumerate_list_of_rows(input_enumerator)
 		CSVOperations.write_to_csv(merger, output)
 	end
 
