@@ -1,33 +1,21 @@
 class CSVOperations
 
-  # (+)
   LINES_PER_FILE = 120000.freeze
-  # (+)
-  DEFAULT_CSV_OPTIONS = { :col_sep => "\t", :headers => :first_row }.freeze
-  # (+)
+  DEFAULT_CSV_OPTIONS = { col_sep: ',', headers: :first_row }.freeze
   DEFAULT_CSV_WRITE_OPTIONS = DEFAULT_CSV_OPTIONS.merge(:row_sep => "\r\n")
 
-  #parses data from file
-  # (+)
   def self.parse(file)
-    binding.pry
     CSV.read(file, DEFAULT_CSV_OPTIONS)
   end
 
-  #reads rows from file and then generates an enumerator
-  # (+)
-  def self.lazy_read(file)
-    Enumerator.new do |yielder|
-      CSV.foreach(file, DEFAULT_CSV_OPTIONS) do |row|
-        yielder.yield(row)
-      end
+  def self.to_array_converter(file)
+    rows = []
+    CSV.foreach(file, DEFAULT_CSV_OPTIONS) do |row|
+      rows << row.to_a
     end
+    rows
   end
 
-  # изменить названия этих файлов, из названия не понятно что делат один и что делает второй
-  # write_content_to_csv
-  # saves content to csv file
-  # (+)
   def self.write(content, headers, output)
     CSV.open(output, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
       csv << headers

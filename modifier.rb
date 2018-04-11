@@ -22,8 +22,10 @@ class Modifier
 	# uses a set of methods for the report's recalculation
 	def modify(output, input)
 		input = sort(input)
-		input_enumerator = CSVOperations.lazy_read(input)
-		merger = enumerate_list_of_rows(input_enumerator)
+		array_of_lists = CSVOperations.to_array_converter(input)
+		merger = enumerate_list_of_rows(array_of_lists)
+		merged_hashes = format_hash_values(merger)
+		combine_values_for_(merged_hashes)
 		CSVOperations.write_to_csv(merger, output)
 	end
 
@@ -39,22 +41,14 @@ class Modifier
 	end
 
 	# updates the value of the received data using the application services
-	def enumerate_list_of_rows(combiner)
-		Enumerator.new do |yielder|
-			timer = combiner.count
-			count = 0
-			merged_hashes = {}
-			timer.times do
-				list_of_rows = combiner.next
-				hash = convert_rows_to_hash(list_of_rows)
-				merged_hashes = merge_hashes(merged_hashes, hash)
-				count += 1
-				if timer == count
-					merged_hashes = format_hash_values(merged_hashes)
-					yielder.yield(combine_values_for_(merged_hashes))
-				end
-			end
+	# def enumerate_list_of_rows(combiner)
+	def enumerate_list_of_rows(array_of_lists)
+		merged_hashes = {}
+		array_of_lists.each do |list_of_rows|
+			hash = convert_rows_to_hash(list_of_rows)
+			merged_hashes = merge_hashes(merged_hashes, hash)
 		end
+		merged_hashes
 	end
 
 	private
