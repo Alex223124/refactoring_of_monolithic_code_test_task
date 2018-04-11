@@ -1,6 +1,5 @@
 require 'pry'
 
-require File.expand_path('lib/combiner',File.dirname(__FILE__))
 require 'csv'
 require 'date'
 require "./lib/file_input_parser"
@@ -30,6 +29,13 @@ class Modifier
 		output
 	end
 
+	def modify(output, input)
+		input = sort(input)
+		input_enumerator = CSVOperations.lazy_read(input)
+		merger = enumerate_list_of_rows(input_enumerator)
+		CSVOperations.write_to_csv(merger, output)
+	end
+
 	def enumerate_list_of_rows(combiner)
 		Enumerator.new do |yielder|
 			while true
@@ -42,13 +48,6 @@ class Modifier
 				end
 			end
 		end
-	end
-
-	def modify(output, input)
-		input = sort(input)
-		input_enumerator = CSVOperations.lazy_read(input)
-		merger = enumerate_list_of_rows(input_enumerator)
-		CSVOperations.write_to_csv(merger, output)
 	end
 
 	private
@@ -71,7 +70,7 @@ class Modifier
 end
 
 # name it "run" and put in separate folder
-directory = "four"
+directory = "five"
 
 modified = input = FileInputParser.new(directory).latest
 modification_factor = 1
