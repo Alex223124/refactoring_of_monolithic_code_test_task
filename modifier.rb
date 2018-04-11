@@ -2,12 +2,12 @@ require 'pry'
 
 require 'csv'
 require 'date'
-require "./lib/file_input_parser"
-require "./lib/standard_classes_extensions/float.rb"
-require "./lib/standard_classes_extensions/string.rb"
-require "./lib/csv_operations"
-require "./lib/rows_to_hash_service"
-require "./lib/report_recalculation_service"
+require "./lib/parsers/file_input_parser"
+require "./lib/ruby_std_lib_extensions/float.rb"
+require "./lib/ruby_std_lib_extensions/string.rb"
+require "./lib/ruby_std_lib_extensions/csv_operations"
+require "./lib/services/rows_to_hash_service"
+require "./lib/services/report_recalculation_service"
 
 class Modifier
 
@@ -20,6 +20,7 @@ class Modifier
 		@cancellation_factor = cancellation_factor
 	end
 
+	# uses a set of methods for the report's recalculation
 	def modify(output, input)
 		input = sort(input)
 		input_enumerator = CSVOperations.lazy_read(input)
@@ -27,6 +28,7 @@ class Modifier
 		CSVOperations.write_to_csv(merger, output)
 	end
 
+	# sorts the data for the subsequent recalculation of the values of certain indicators
 	def sort(file)
 		output = "#{file}.sorted"
 		content_as_table = CSVOperations.parse(file)
@@ -37,6 +39,7 @@ class Modifier
 		output
 	end
 
+	# updates the value of the received data using the application services
 	def enumerate_list_of_rows(combiner)
 		Enumerator.new do |yielder|
 			while true
@@ -53,6 +56,8 @@ class Modifier
 
 	private
 
+	# (+)
+	#starts the service for the recalculation of incoming program data
 	def combine_values_for_(hash)
 		ReportRecalculationService.new(hash, @cancellation_factor, @sale_amount_factor).calculate
 	end
