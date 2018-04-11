@@ -22,12 +22,14 @@ class ReportRecalculationService
                      'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value',
                      'KEYWORD - Commission Value'].freeze
 
+  # initializes the instance variables for further use
   def initialize(hash, cancellation_factor, sale_amount_factor)
     @hash = hash
     @cancellation_factor = cancellation_factor
     @sale_amount_factor = sale_amount_factor
   end
 
+  # overwrites the values of the received data in accordance with the specified logic of supporting methods
   def calculate
     set_last_key_as_key
     set_last_present_value_as_key
@@ -40,48 +42,57 @@ class ReportRecalculationService
 
   private
 
+  # assigns the last hash value as the single to
+  # the same key-value pair specified in the constant
   def set_last_key_as_key
-    LAST_VALUE_WINS.each do |key|
-      @hash[key] = @hash[key].last
-    end
+    LAST_VALUE_WINS.each {|key| @hash[key] = @hash[key].last}
   end
 
+  # assigns the last hash value which satisfy conditions
+  # to the same key-value pair specified in the constant
   def set_last_present_value_as_key
     LAST_REAL_VALUE_WINS.each do |key|
       @hash[key] = @hash[key].select {|v| !(v.nil? || (v == 0) || (v == '0') || (v == ''))}.last
     end
   end
 
+  # assigns the first value value as a string
+  # to the same key-value pair specified in the constant
   def set_first_value_as_key_in_string_format
-    INT_VALUES.each do |key|
-      @hash[key] = @hash[key][0].to_s
-    end
+    INT_VALUES.each {@hash[key] = @hash[key][0].to_s}
   end
 
+  # assigns the first value rounded to the tenth
+  # to the same key-value pair specified in the constant
   def set_first_value_as_key_in_float_format
-    FLOAT_VALUES.each do |key|
-      @hash[key] = round_up_to_tenth(@hash[key][0])
-    end
+    FLOAT_VALUES.each {|key| @hash[key] = round_up_to_tenth(@hash[key][0])}
   end
 
+  # assigns a new value to the key-value pair
+  # with the 'number of commissions' key
   def set_number_of_commissions
     @hash["number of commissions"] = calculate_number_of_commissions(@cancellation_factor, @hash)
   end
 
+  # assigns new values to the pairs from
+  # the hash which specified in the constant
   def set_values_for_commision_types
     COMISSION_TYPES.each do |key|
       @hash[key] = calculate_value_of_specific_commission_(key, @cancellation_factor, @sale_amount_factor, @hash)
     end
   end
 
+  # rounds the value to the tenth
   def round_up_to_tenth(value)
     value.from_german_to_f.to_german_s
   end
 
+  # calculates the number of commissions
   def calculate_number_of_commissions(cancellation_factor, hash)
     (cancellation_factor * hash["number of commissions"][0].from_german_to_f).to_german_s
   end
 
+  # calculates the value for a certain type of commission
   def calculate_value_of_specific_commission_(type, cancellation_factor, sale_amount_factor, hash)
     (cancellation_factor * sale_amount_factor * hash[type][0].from_german_to_f).to_german_s
   end
