@@ -6,7 +6,6 @@ require "./lib/parsers/file_input_parser"
 require "./lib/ruby_std_lib_extensions/float.rb"
 require "./lib/ruby_std_lib_extensions/string.rb"
 require "./lib/ruby_std_lib_extensions/csv_operations"
-require "./lib/services/rows_to_hash_service"
 require "./lib/services/report_recalculation_service"
 
 class Modifier
