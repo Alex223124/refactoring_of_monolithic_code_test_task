@@ -13,24 +13,17 @@ class ReportRecalculationService
                      'KEYWORD - Commission Value'].freeze
 
   def initialize(hash, cancellation_factor, sale_amount_factor)
-    binding.pry
     @hash = hash
     @cancellation_factor = cancellation_factor
     @sale_amount_factor = sale_amount_factor
   end
 
   def calculate
-    binding.pry
     set_last_key_as_key
-    binding.pry
     set_last_present_value_as_key
-    binding.pry
     set_first_value_as_key_in_string_format
-    binding.pry
     set_first_value_as_key_in_float_format
-    binding.pry
     set_number_of_commissions
-    binding.pry
     set_values_for_commision_types
     @hash
   end
@@ -38,57 +31,48 @@ class ReportRecalculationService
   private
 
   def set_last_key_as_key
-    binding.pry
     LAST_VALUE_WINS.each do |key|
       @hash[key] = @hash[key].last
     end
   end
 
   def set_last_present_value_as_key
-    binding.pry
     LAST_REAL_VALUE_WINS.each do |key|
       @hash[key] = @hash[key].select {|v| !(v.nil? || (v == 0) || (v == '0') || (v == ''))}.last
     end
   end
 
   def set_first_value_as_key_in_string_format
-    binding.pry
     INT_VALUES.each do |key|
       @hash[key] = @hash[key][0].to_s
     end
   end
 
   def set_first_value_as_key_in_float_format
-    binding.pry
     FLOAT_VALUES.each do |key|
       @hash[key] = round_up_to_tenth(@hash[key][0])
     end
   end
 
   def set_number_of_commissions
-    binding.pry
     @hash["number of commissions"] = calculate_number_of_commissions(@cancellation_factor, @hash)
   end
 
   def set_values_for_commision_types
-    binding.pry
     COMISSION_TYPES.each do |key|
       @hash[key] = calculate_value_of_specific_commission_(key, @cancellation_factor, @sale_amount_factor, @hash)
     end
   end
 
   def round_up_to_tenth(value)
-    binding.pry
     value.from_german_to_f.to_german_s
   end
 
   def calculate_number_of_commissions(cancellation_factor, hash)
-    binding.pry
     (cancellation_factor * hash["number of commissions"][0].from_german_to_f).to_german_s
   end
 
   def calculate_value_of_specific_commission_(type, cancellation_factor, sale_amount_factor, hash)
-    binding.pry
     (cancellation_factor * sale_amount_factor * hash[type][0].from_german_to_f).to_german_s
   end
 
