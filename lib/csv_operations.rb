@@ -29,9 +29,10 @@ class CSVOperations
     done = false
     file_index = 0
     file_name = remove_file_extension_from_(output)
+    new_file_name = file_name + "_#{file_index}.txt"
 
     until done do
-      CSV.open(file_name + "_#{file_index}.txt", "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
+      CSV.open(new_file_name, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
         headers_written = false
         line_count = 0
         while line_count < LINES_PER_FILE
