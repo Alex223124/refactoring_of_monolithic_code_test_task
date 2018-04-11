@@ -42,13 +42,17 @@ class Modifier
 	# updates the value of the received data using the application services
 	def enumerate_list_of_rows(combiner)
 		Enumerator.new do |yielder|
-			while true
-				begin
-					list_of_rows = combiner.next
-					merged_hashes = RowsToHashService.new(list_of_rows).run
+			timer = combiner.count
+			count = 0
+			merged_hashes = {}
+			timer.times do
+				list_of_rows = combiner.next
+				hash = convert_rows_to_hash(list_of_rows)
+				merged_hashes = merge_hashes(merged_hashes, hash)
+				count += 1
+				if timer == count
+					merged_hashes = format_hash_values(merged_hashes)
 					yielder.yield(combine_values_for_(merged_hashes))
-				rescue StopIteration
-					break
 				end
 			end
 		end
@@ -56,10 +60,30 @@ class Modifier
 
 	private
 
-	# (+)
 	#starts the service for the recalculation of incoming program data
 	def combine_values_for_(hash)
 		ReportRecalculationService.new(hash, @cancellation_factor, @sale_amount_factor).calculate
 	end
+
+	def convert_rows_to_hash(list_of_rows)
+		hash = {}
+		list_of_rows.each do |row|
+			next if row.nil? || row[0].nil?
+			hash[row[0]] = [row[1]]
+		end
+		hash
+	end
+
+	def merge_hashes(h1, h2)
+		h1.merge(h2){|k,v1,v2|[v1,v2]}
+	end
+
+	def format_hash_values(hash)
+		hash.each do |key, value|
+			hash[key] = value.flatten
+		end
+		hash
+	end
+
 
 end
