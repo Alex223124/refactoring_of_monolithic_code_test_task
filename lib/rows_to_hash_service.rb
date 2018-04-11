@@ -8,8 +8,11 @@ class RowsToHashService
 
   # creates hashes from csv input
   def run
+    binding.pry
     keys = convert_rows_to_array
+    binding.pry
     hash = create_hash_from_(keys)
+    binding.pry
     fill_hash(hash)
   end
 
@@ -17,7 +20,9 @@ class RowsToHashService
 
   # creates array of strings
   def convert_rows_to_array
+    binding.pry
     keys = []
+    binding.pry
     @list_of_rows.each do |row|
       next if row.nil?
       keys << row[0]
@@ -27,6 +32,7 @@ class RowsToHashService
 
   # creates hash from array of given keys with blank values
   def create_hash_from_(keys)
+    binding.pry
     result = {}
     keys.each do |key|
       result[key] = []
@@ -36,6 +42,7 @@ class RowsToHashService
 
   # adds values to hashes with blank values
   def fill_hash(hash)
+    binding.pry
     hash.keys.each do |key|
       @list_of_rows.each do |row|
         hash[key] << (row.nil? ? nil : row[1])
