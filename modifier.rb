@@ -14,9 +14,17 @@ class Modifier
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
 	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos'].freeze
 
+	# initializes factors fr future usage in sorting
 	def initialize(sale_amount_factor, cancellation_factor)
 		@sale_amount_factor = sale_amount_factor
 		@cancellation_factor = cancellation_factor
+	end
+
+	def modify(output, input)
+		input = sort(input)
+		input_enumerator = CSVOperations.lazy_read(input)
+		merger = enumerate_list_of_rows(input_enumerator)
+		CSVOperations.write_to_csv(merger, output)
 	end
 
 	def sort(file)
@@ -27,13 +35,6 @@ class Modifier
 		content = content_as_table.sort_by { |a| -a[index_of_key].to_i }
 		CSVOperations.write(content, headers, output)
 		output
-	end
-
-	def modify(output, input)
-		input = sort(input)
-		input_enumerator = CSVOperations.lazy_read(input)
-		merger = enumerate_list_of_rows(input_enumerator)
-		CSVOperations.write_to_csv(merger, output)
 	end
 
 	def enumerate_list_of_rows(combiner)
@@ -51,17 +52,6 @@ class Modifier
 	end
 
 	private
-
-	# combine what?
-	def combine(merged)
-		result = []
-
-		# do we need don't care variable here?
-		merged.each do |_, hash|
-			result << combine_values_for_(hash)
-		end
-		result
-	end
 
 	def combine_values_for_(hash)
 		ReportRecalculationService.new(hash, @cancellation_factor, @sale_amount_factor).calculate
