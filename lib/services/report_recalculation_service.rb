@@ -1,12 +1,22 @@
 class ReportRecalculationService
 
-  LAST_VALUE_WINS = ['Account ID', 'Account Name', 'Campaign', 'Ad Group', 'Keyword', 'Keyword Type',
-                     'Subid', 'Paused', 'Max CPC', 'Keyword Unique ID', 'ACCOUNT', 'CAMPAIGN', 'BRAND',
+  LAST_VALUE_WINS = ['Account ID', 'Account Name',
+                     'Campaign', 'Ad Group', 'Keyword',
+                     'Keyword Type', 'Subid', 'Paused',
+                     'Max CPC', 'Keyword Unique ID',
+                     'ACCOUNT', 'CAMPAIGN', 'BRAND',
                      'BRAND+CATEGORY', 'ADGROUP', 'KEYWORD'].freeze
+
   LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos'].freeze
-  INT_VALUES = ['Clicks', 'Impressions', 'ACCOUNT - Clicks', 'CAMPAIGN - Clicks', 'BRAND - Clicks',
-                'BRAND+CATEGORY - Clicks', 'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
-  FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid', 'Costs', 'Avg Pos'].freeze
+
+  INT_VALUES = ['Clicks', 'Impressions',
+                'ACCOUNT - Clicks', 'CAMPAIGN - Clicks',
+                'BRAND - Clicks', 'BRAND+CATEGORY - Clicks',
+                'ADGROUP - Clicks', 'KEYWORD - Clicks'].freeze
+
+  FLOAT_VALUES = ['Avg CPC', 'CTR', 'Est EPC', 'newBid',
+                  'Costs', 'Avg Pos'].freeze
+
   COMISSION_TYPES = ['Commission Value', 'ACCOUNT - Commission Value',
                      'CAMPAIGN - Commission Value', 'BRAND - Commission Value',
                      'BRAND+CATEGORY - Commission Value', 'ADGROUP - Commission Value',
