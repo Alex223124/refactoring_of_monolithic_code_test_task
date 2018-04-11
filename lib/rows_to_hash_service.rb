@@ -20,9 +20,7 @@ class RowsToHashService
     keys = []
     @list_of_rows.each do |row|
       next if row.nil?
-      row.headers.each do |key|
-        keys << key
-      end
+      keys << row[0]
     end
     keys
   end
@@ -40,7 +38,7 @@ class RowsToHashService
   def fill_hash(hash)
     hash.keys.each do |key|
       @list_of_rows.each do |row|
-        hash[key] << (row.nil? ? nil : row[key])
+        hash[key] << (row.nil? ? nil : row[1])
       end
     end
     hash
