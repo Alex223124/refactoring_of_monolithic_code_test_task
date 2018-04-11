@@ -13,12 +13,7 @@ class FileInputParser
   end
 
   def latest
-    @files.sort_by! do |file|
-      last_date = (/\d+-\d+-\d+_[[:alpha:]]+\.txt$/).match(file)
-      last_date = last_date.to_s.match(/\d+-\d+-\d+/)
-      date = DateTime.parse(last_date.to_s)
-      date
-    end
+    sort_by_date_from_file_name
     @files.last
   end
 
@@ -39,6 +34,15 @@ class FileInputParser
       Dir[files_path]
     else
       raise "The directory #{directroy} is empty. Please use directory with files"
+    end
+  end
+
+  def sort_by_date_from_file_name
+    @files.sort_by! do |file|
+      last_date = (/\d+-\d+-\d+_[[:alpha:]]+\.txt$/).match(file)
+      last_date = last_date.to_s.match(/\d+-\d+-\d+/)
+      date = DateTime.parse(last_date.to_s)
+      date
     end
   end
 
