@@ -1,6 +1,4 @@
-require 'date'
-require 'pry'
-require './lib/parsers/file_input_parser'
+require './spec/spec_helper'
 
 describe "file input parser" do
 
