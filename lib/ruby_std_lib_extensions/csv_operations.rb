@@ -8,6 +8,7 @@ class CSVOperations
     CSV.read(file, DEFAULT_CSV_OPTIONS)
   end
 
+  # to_a or to_array?
   def self.to_array_converter(file)
     rows = []
     CSV.foreach(file, DEFAULT_CSV_OPTIONS) do |row|
@@ -27,34 +28,14 @@ class CSVOperations
 
   # (+)
   def self.write_to_csv(merger, output)
-    done = false
     file_index = 0
     file_name = remove_file_extension_from_(output)
     new_file_name = file_name + "_#{file_index}.txt"
 
-    until done do
-      CSV.open(new_file_name, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
-        headers_written = false
-        line_count = 0
-        while line_count < LINES_PER_FILE
-          begin
-            merged = merger.next
-            unless headers_written
-              csv << merged.keys
-              headers_written = true
-              line_count +=1
-            end
-            csv << merged
-            line_count +=1
-          rescue StopIteration
-            done = true
-            break
-          end
-        end
-        file_index += 1
-      end
+    CSV.open(new_file_name, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
+      merger.to_a.each {|elem| csv << elem}
     end
-  end
+    end
 
 
   # (+)
