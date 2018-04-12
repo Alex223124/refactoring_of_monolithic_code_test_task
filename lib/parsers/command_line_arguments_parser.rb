@@ -6,7 +6,6 @@ class CommandLineArgumentsParser
   # and checks their correctness, in case of incorrect arguments,
   # it raises the error
   def initialize
-    binding.pry
     if valid_arguments?
       @directory = ARGV[0]
       @modification_factor = parse_number(ARGV[1])
