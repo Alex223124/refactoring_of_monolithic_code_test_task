@@ -28,15 +28,17 @@ class CSVOperations
 
   # (+)
   def self.write_to_csv(merger, output)
-    file_index = 0
     file_name = remove_file_extension_from_(output)
     new_file_name = file_name + "_#{file_index}.txt"
+    headers = merger.keys
+    content = merger.values
 
     CSV.open(new_file_name, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
-      merger.to_a.each {|elem| csv << elem}
-    end
+      csv << headers
+      csv << content
     end
 
+  end
 
   # (+)
   def self.remove_file_extension_from_(path, file_extension = '.txt')
