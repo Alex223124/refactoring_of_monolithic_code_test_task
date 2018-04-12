@@ -1,15 +1,10 @@
 require "./lib/parsers/file_input_parser"
+require "./lib/parsers/command_line_arguments_parser"
 require "./modifier"
 require 'date'
 
-
-directory = "five"
-
-
-input = FileInputParser.new(directory).latest
-modification_factor = 1
-cancellaction_factor = 0.4
-modifier = Modifier.new(modification_factor, cancellaction_factor)
-modifier.modify(input)
-
+arguments = CommandLineArgumentsParser.new
+input = FileInputParser.new(arguments.directory).latest
+modifier = Modifier.new(input, arguments.modification_factor, arguments.cancellaction_factor)
+modifier.modify
 puts "DONE modifying"
