@@ -10,7 +10,7 @@ class FileInputParser
   # if given directory path incorrect raises exception
   def initialize(directory)
     @directory = directory
-    if @directory
+    if (@directory && !@directory.empty?)
       parse_input
     else
       raise "No directory given. Please specify directory."
@@ -29,27 +29,27 @@ class FileInputParser
   # it extracts a list of all files from the directory,
   # in other case (when directory doesnt exist) raises exception
   def parse_input
-    directroy_path = FILES_FOLDER_BASE_URL + @directory
-    if File.exist?(directroy_path)
-      get_files_from_(directroy_path)
+    directory_path = FILES_FOLDER_BASE_URL + @directory if @directory
+    if (directory_path && File.exist?(directory_path))
+      get_files_from_(directory_path)
     else
-      raise "Wrong directroy name, Please use the existing directory name"
+      raise "Wrong directroy name: #{@directory}, Please use the existing directory name"
     end
   end
 
   #checks if there are files in the directory, if yes,
   # then the method gets an array of filenames, otherwise it raises the exception
-  def get_files_from_(directroy)
-    files_path = directroy + "/*"
+  def get_files_from_(directory)
+    files_path = directory + "/*"
     if Dir[files_path].any?
-      fetch_specific_files(Dir[files_path])
+      fetch_specific_(Dir[files_path])
     else
       raise "The directory #{@directroy} is empty. Please use directory with files"
     end
   end
 
   #selects files that match the pattern, otherwise, raises the exception
-  def fetch_specific_files(files)
+  def fetch_specific_(files)
     @files = files.select{|file| file.match(RESTRICTION_FOR_FILE_NAMES)}
     if @files.any?
       #do nothing
