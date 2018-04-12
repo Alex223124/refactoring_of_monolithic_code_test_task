@@ -2,9 +2,9 @@ require './spec/spec_helper'
 
 describe "file input parser" do
 
+  FileInputParser.const_set("FILES_FOLDER_BASE_URL", "#{Dir.pwd}/sample_data/workspace/")
+  
   describe "#initialize" do
-
-    FileInputParser.const_set("FILES_FOLDER_BASE_URL", "#{Dir.pwd}/sample_data/workspace/")
 
     context "when directroy name is correct" do
 
