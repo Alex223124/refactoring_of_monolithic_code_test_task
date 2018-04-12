@@ -3,7 +3,7 @@ require './spec/spec_helper'
 describe "file input parser" do
 
   FileInputParser.const_set("FILES_FOLDER_BASE_URL", "#{Dir.pwd}/sample_data/workspace/")
-  
+
   describe "#initialize" do
 
     context "when directroy name is correct" do
@@ -14,7 +14,7 @@ describe "file input parser" do
                        "#{FileInputParser.const_get('FILES_FOLDER_BASE_URL')}example_directory/project_2011-07-27_2011-10-10_performancedata.txt",
                        "#{FileInputParser.const_get('FILES_FOLDER_BASE_URL')}example_directory/project_2012-07-27_2012-10-10_performancedata.txt"]
 
-      it "should set @files instance varialbe with list of files" do
+      it "should set @files instance variable with list of files" do
         expect(file_input_parser.files).to eq(correct_value)
       end
 
@@ -23,7 +23,7 @@ describe "file input parser" do
     context "when directroy name is incorrect" do
 
       incorrect_directroy_name = "111111111111111111111"
-      error_message = "Wrong directroy name: 111111111111111111111, Please use the existing directory name"
+      error_message = "Wrong directory name: 111111111111111111111, Please use the existing directory name"
 
       it "should raise an error" do
         expect{ FileInputParser.new(incorrect_directroy_name) }.to raise_error(error_message)
@@ -98,7 +98,7 @@ describe "file input parser" do
 
   describe "#parse_input" do
 
-    context "when directroy path is correct" do
+    context "when directory path is correct" do
 
       directory_name = "example_directory"
       file_input_parser = FileInputParser.allocate
@@ -108,18 +108,18 @@ describe "file input parser" do
                        "#{FileInputParser.const_get('FILES_FOLDER_BASE_URL')}example_directory/project_2011-07-27_2011-10-10_performancedata.txt",
                        "#{FileInputParser.const_get('FILES_FOLDER_BASE_URL')}example_directory/project_2012-07-27_2012-10-10_performancedata.txt"]
 
-      it "should get am array of files from directroy" do
+      it "should get an array of files from directory" do
         expect(file_input_parser.files).to eq(correct_value)
       end
 
     end
 
-    context "when directroy path is incorrect" do
+    context "when directory path is incorrect" do
 
       directory_name = "111111111111111111111111"
       file_input_parser = FileInputParser.allocate
       file_input_parser.instance_variable_set("@directory", directory_name)
-      error_message = "Wrong directroy name: 111111111111111111111111, Please use the existing directory name"
+      error_message = "Wrong directory name: 111111111111111111111111, Please use the existing directory name"
 
       it "should raise the error" do
         expect{ file_input_parser.send(:parse_input) }.to raise_error(error_message)
@@ -128,11 +128,11 @@ describe "file input parser" do
 
     end
 
-    context "when directroy path is not specified" do
+    context "when directory path is not specified" do
 
       file_input_parser = FileInputParser.allocate
       file_input_parser.instance_variable_set("@directory", nil)
-      error_message = "Wrong directroy name: , Please use the existing directory name"
+      error_message = "Wrong directory name: , Please use the existing directory name"
 
       it "should raise the error" do
         expect{ file_input_parser.send(:parse_input) }.to raise_error(error_message)

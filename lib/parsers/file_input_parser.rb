@@ -33,7 +33,7 @@ class FileInputParser
     if (directory_path && File.exist?(directory_path))
       get_files_from_(directory_path)
     else
-      raise "Wrong directroy name: #{@directory}, Please use the existing directory name"
+      raise "Wrong directory name: #{@directory}, Please use the existing directory name"
     end
   end
 
