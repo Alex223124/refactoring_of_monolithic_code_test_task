@@ -7,6 +7,7 @@ require "./lib/ruby_std_lib_extensions/float.rb"
 require "./lib/ruby_std_lib_extensions/string.rb"
 require "./lib/ruby_std_lib_extensions/csv_operations"
 require "./lib/services/report_recalculation_service"
+require "./lib/services/rows_to_hash_service"
 
 class Modifier
 
@@ -23,10 +24,10 @@ class Modifier
 	def modify(output, input)
 		input = sort(input)
 		array_of_lists = CSVOperations.to_array_converter(input)
-		merger = enumerate_list_of_rows(array_of_lists)
-		merged_hashes = format_hash_values(merger)
-		combine_values_for_(merged_hashes)
-		CSVOperations.write_to_csv(merger, output)
+		merged_hashes = RowsToHashServcie.new(array_of_lists).run
+		recalculated_hash = combine_values_for_(merged_hashes)
+		#  #write hash to csv?
+		CSVOperations.write_to_csv(recalculated_hash, output)
 	end
 
 	# sorts the data for the subsequent recalculation of the values of certain indicators
@@ -40,43 +41,11 @@ class Modifier
 		output
 	end
 
-	# updates the value of the received data using the application services
-	# def enumerate_list_of_rows(combiner)
-	def enumerate_list_of_rows(array_of_lists)
-		merged_hashes = {}
-		array_of_lists.each do |list_of_rows|
-			hash = convert_rows_to_hash(list_of_rows)
-			merged_hashes = merge_hashes(merged_hashes, hash)
-		end
-		merged_hashes
-	end
-
 	private
 
 	#starts the service for the recalculation of incoming program data
 	def combine_values_for_(hash)
 		ReportRecalculationService.new(hash, @cancellation_factor, @sale_amount_factor).calculate
 	end
-
-	def convert_rows_to_hash(list_of_rows)
-		hash = {}
-		list_of_rows.each do |row|
-			next if row.nil? || row[0].nil?
-			hash[row[0]] = [row[1]]
-		end
-		hash
-	end
-
-	def merge_hashes(h1, h2)
-		h1.merge(h2){|k,v1,v2|[v1,v2]}
-	end
-
-	def format_hash_values(hash)
-		hash.each do |key, value|
-			hash[key] = value.flatten
-		end
-		hash
-	end
-
 
 end
