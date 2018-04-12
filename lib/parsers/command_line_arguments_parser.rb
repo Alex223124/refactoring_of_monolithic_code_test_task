@@ -11,7 +11,7 @@ class CommandLineArgumentsParser
       @modification_factor = parse_number(ARGV[1])
       @cancellaction_factor = parse_number(ARGV[2])
     else
-      raise "Wring input! directroy: #{ARGV[0]}, modification_factor: #{ARGV[1]}, cancellaction_factor: #{ARGV[2]}.
+      raise "Wrong input! directroy: #{ARGV[0]}, modification_factor: #{ARGV[1]}, cancellaction_factor: #{ARGV[2]}.
             Please pass arguments in such order: directory name (string), modification factor (integer or float),
             cancellaction factor (integer or float), for example: ruby run.rb directory_name 1 0.4"
     end
@@ -36,7 +36,7 @@ class CommandLineArgumentsParser
 
   # checks if arguments are present
   def arguments_passed?
-    ARGV[0] && ARGV[1] && ARGV[2]
+    !!(ARGV[0] && ARGV[1] && ARGV[2])
   end
 
   # checks if arguments have the correct type
