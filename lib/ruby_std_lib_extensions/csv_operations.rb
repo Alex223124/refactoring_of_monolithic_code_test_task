@@ -26,21 +26,18 @@ class CSVOperations
     end
   end
 
-  # (+)
-  def self.write_to_csv(merger, output)
-    file_name = remove_file_extension_from_(output)
-    new_file_name = file_name + "_#{file_index}.txt"
-    headers = merger.keys
-    content = merger.values
+  def self.hash_to_csv(hash, file_name)
+    file_name = remove_file_extension_from_(file_name)
+    new_file_name = file_name + "_(recalculated).txt"
+    headers = hash.keys
+    content = hash.values
 
     CSV.open(new_file_name, "wb", DEFAULT_CSV_WRITE_OPTIONS) do |csv|
       csv << headers
       csv << content
     end
-
   end
 
-  # (+)
   def self.remove_file_extension_from_(path, file_extension = '.txt')
     path.gsub(file_extension, '')
   end

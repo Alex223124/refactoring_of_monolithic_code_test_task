@@ -1,4 +1,4 @@
-require "./lib/file_input_parser"
+require "./lib/parsers/file_input_parser"
 require "./modifier"
 require 'date'
 
@@ -6,10 +6,10 @@ require 'date'
 directory = "five"
 
 
-modified = input = FileInputParser.new(directory).latest
+input = FileInputParser.new(directory).latest
 modification_factor = 1
 cancellaction_factor = 0.4
 modifier = Modifier.new(modification_factor, cancellaction_factor)
-modifier.modify(modified, input)
+modifier.modify(input)
 
 puts "DONE modifying"

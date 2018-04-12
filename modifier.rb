@@ -21,13 +21,12 @@ class Modifier
 	end
 
 	# uses a set of methods for the report's recalculation
-	def modify(output, input)
+	def modify(input)
 		input = sort(input)
 		array_of_lists = CSVOperations.to_array_converter(input)
 		merged_hashes = RowsToHashServcie.new(array_of_lists).run
 		recalculated_hash = combine_values_for_(merged_hashes)
-		#  #write hash to csv?
-		CSVOperations.write_to_csv(recalculated_hash, output)
+		CSVOperations.hash_to_csv(recalculated_hash, input)
 	end
 
 	# sorts the data for the subsequent recalculation of the values of certain indicators

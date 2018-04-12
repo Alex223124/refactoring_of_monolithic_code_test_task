@@ -1,4 +1,5 @@
 class ReportRecalculationService
+  # recalculates and selects right data for report
 
   LAST_VALUE_WINS = ['Account ID', 'Account Name',
                      'Campaign', 'Ad Group', 'Keyword',
@@ -59,7 +60,7 @@ class ReportRecalculationService
   # assigns the first value value as a string
   # to the same key-value pair specified in the constant
   def set_first_value_as_key_in_string_format
-    INT_VALUES.each {@hash[key] = @hash[key][0].to_s}
+    INT_VALUES.each { |key| @hash[key] = @hash[key][0].to_s}
   end
 
   # assigns the first value rounded to the tenth
