@@ -42,7 +42,7 @@ class Modifier
 	# some data by conditions from ReportRecalculationService service
 	def recalculate(input)
 		array_of_lists = CSVOperations.to_array_converter(input)
-		merged_hashes = RowsToHashServcie.new(array_of_lists).run
+		merged_hashes = RowsToHashService.new(array_of_lists).run
 		recalculated_hash = combine_values_for_(merged_hashes)
 		CSVOperations.hash_to_csv(recalculated_hash, input)
 	end

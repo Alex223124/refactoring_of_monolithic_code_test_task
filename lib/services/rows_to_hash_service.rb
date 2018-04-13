@@ -1,4 +1,4 @@
-class RowsToHashServcie
+class RowsToHashService
 
   #initializes an instance variable for further use
   def initialize(array_of_lists)
