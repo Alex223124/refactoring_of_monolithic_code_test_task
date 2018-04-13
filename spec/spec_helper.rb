@@ -1,5 +1,6 @@
 require 'date'
 require 'pry'
+require 'csv'
 
 require './lib/parsers/file_input_parser'
 require './lib/parsers/command_line_arguments_parser'
