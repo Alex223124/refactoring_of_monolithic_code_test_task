@@ -9,7 +9,7 @@ require "./lib/ruby_std_lib_extensions/csv_operations"
 require "./lib/services/report_recalculation_service"
 require "./lib/services/rows_to_hash_service"
 
-class Modifier
+class ModifierService
 
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
 	LAST_REAL_VALUE_WINS = ['Last Avg CPC', 'Last Avg Pos'].freeze
