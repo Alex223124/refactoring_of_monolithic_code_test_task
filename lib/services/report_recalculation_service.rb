@@ -72,14 +72,14 @@ class ReportRecalculationService
   # assigns a new value to the key-value pair
   # with the 'number of commissions' key
   def set_number_of_commissions
-    @hash["number of commissions"] = calculate_number_of_commissions(@cancellation_factor, @hash)
+    @hash["number of commissions"] = calculate_number_of_commissions
   end
 
   # assigns new values to the pairs from
   # the hash which specified in the constant
   def set_values_for_commision_types
     COMISSION_TYPES.each do |key|
-      @hash[key] = calculate_value_of_specific_commission_(key, @cancellation_factor, @sale_amount_factor, @hash)
+      @hash[key] = calculate_value_of_specific_commission_(key)
     end
   end
 
@@ -89,13 +89,13 @@ class ReportRecalculationService
   end
 
   # calculates the number of commissions
-  def calculate_number_of_commissions(cancellation_factor, hash)
-    (cancellation_factor * hash["number of commissions"][0].from_german_to_f).to_german_s
+  def calculate_number_of_commissions
+    (@cancellation_factor * @hash["number of commissions"][0].from_german_to_f).to_german_s
   end
 
   # calculates the value for a certain type of commission
-  def calculate_value_of_specific_commission_(type, cancellation_factor, sale_amount_factor, hash)
-    (cancellation_factor * sale_amount_factor * hash[type][0].from_german_to_f).to_german_s
+  def calculate_value_of_specific_commission_(type)
+    (@cancellation_factor * @sale_amount_factor * @hash[type][0].from_german_to_f).to_german_s
   end
 
 end
