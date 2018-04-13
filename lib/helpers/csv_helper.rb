@@ -3,7 +3,7 @@ class CSVHelper
 
   LINES_PER_FILE = 120000.freeze
   DEFAULT_CSV_OPTIONS = { col_sep: ',', headers: :first_row }.freeze
-  DEFAULT_CSV_WRITE_OPTIONS = DEFAULT_CSV_OPTIONS.merge(:row_sep => "\r\n")
+  DEFAULT_CSV_WRITE_OPTIONS = DEFAULT_CSV_OPTIONS.merge(:row_sep => "\r\n").freeze
 
   # reads csv file
   def self.parse(file)

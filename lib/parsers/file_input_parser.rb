@@ -1,8 +1,8 @@
 class FileInputParser
 
-  FILES_FOLDER_BASE_URL = "#{ ENV['HOME'] }/workspace/"
-  RESTRICTION_FOR_FILE_NAMES = /\d+-\d+-\d+_[[:alpha:]]+\.txt$/
-  LAST_DATE_FROM_FILE_NAME = /\d+-\d+-\d+/
+  FILES_FOLDER_BASE_URL = ("#{ ENV['HOME'] }/workspace/").freeze
+  RESTRICTION_FOR_FILE_NAMES = (/\d+-\d+-\d+_[[:alpha:]]+\.txt$/).freeze
+  LAST_DATE_FROM_FILE_NAME = (/\d+-\d+-\d+/).freeze
 
   attr_accessor :files
 
