@@ -1,4 +1,5 @@
-class CSVOperations
+class CSVHelper
+  # can be a mixin in future, for now just helper
 
   LINES_PER_FILE = 120000.freeze
   DEFAULT_CSV_OPTIONS = { col_sep: ',', headers: :first_row }.freeze

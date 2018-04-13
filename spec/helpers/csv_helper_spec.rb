@@ -1,6 +1,6 @@
 require './spec/spec_helper'
 
-describe "scv operations" do
+describe "scv helper" do
 
   describe "#self.parse" do
 
@@ -22,7 +22,7 @@ describe "scv operations" do
 
       FileInputParser.const_set("FILES_FOLDER_BASE_URL", "#{Dir.pwd}/sample_data/workspace/")
       file = "#{FileInputParser.const_get('FILES_FOLDER_BASE_URL')}example_directory/project_2013-07-27_2013-10-10_performancedata.txt"
-      csv = CSVOperations.parse(file)
+      csv = CSVHelper.parse(file)
 
       it "should read file and retrun correct csv" do
         expect(csv[0].to_a).to eq(correct_output)
@@ -35,7 +35,7 @@ describe "scv operations" do
       file = "1111111111111111111.txt"
 
       it "should read file and retrun correct csv" do
-        expect{ CSVOperations.parse(file) }.to raise_error
+        expect{ CSVHelper.parse(file) }.to raise_error
       end
 
     end
@@ -63,7 +63,7 @@ describe "scv operations" do
       FileInputParser.const_set("FILES_FOLDER_BASE_URL", "#{Dir.pwd}/sample_data/workspace/")
 
       file = "#{FileInputParser.const_get('FILES_FOLDER_BASE_URL')}example_directory/project_2013-07-27_2013-10-10_performancedata.txt"
-      array = CSVOperations.to_array_converter(file)
+      array = CSVHelper.to_array_converter(file)
 
       it "should read file and retrun correct csv" do
         expect(array[0]).to eq(correct_output)
@@ -76,7 +76,7 @@ describe "scv operations" do
       file = "11111111111111.txt"
 
       it "should read file and retrun correct csv" do
-        expect{ CSVOperations.to_array_converter(file) }.to raise_error
+        expect{ CSVHelper.to_array_converter(file) }.to raise_error
       end
 
     end
@@ -116,20 +116,20 @@ describe "scv operations" do
 
       it "should generate file with given name" do
         expect(Dir[path_to_file].any?).to eq(false)
-        CSVOperations.write(content, headers, output)
+        CSVHelper.write(content, headers, output)
         expect(Dir[path_to_file].any?).to eq(true)
         File.delete(path_to_file)
       end
 
       it "should generate file with correct headers" do
-        CSVOperations.write(content, headers, output)
+        CSVHelper.write(content, headers, output)
         headers_from_csv = CSV.read(output)[0]
         expect(headers_from_csv).to eq(headers)
         File.delete(path_to_file)
       end
 
       it "should generate file with correct content" do
-        CSVOperations.write(content, headers, output)
+        CSVHelper.write(content, headers, output)
         content_from_csv = CSV.foreach(output).drop(1)
         expect(content_from_csv).to eq(content)
         File.delete(path_to_file)
@@ -144,7 +144,7 @@ describe "scv operations" do
       output = ""
 
       it "should raise an error" do
-        expect{ CSVOperations.write(content, headers, output) }.to raise_error
+        expect{ CSVHelper.write(content, headers, output) }.to raise_error
       end
 
     end
@@ -152,7 +152,7 @@ describe "scv operations" do
     context "when arguments are not specified" do
 
       it "should raise an error" do
-        expect{ CSVOperations.write(nil, nil, nil) }.to raise_error
+        expect{ CSVHelper.write(nil, nil, nil) }.to raise_error
       end
 
     end
@@ -201,20 +201,20 @@ describe "scv operations" do
 
       it "should generate file with given name" do
         expect(Dir[path_to_new_file].any?).to eq(false)
-        CSVOperations.hash_to_csv(hash, path_to_file)
+        CSVHelper.hash_to_csv(hash, path_to_file)
         expect(Dir[path_to_new_file].any?).to eq(true)
         File.delete(path_to_new_file)
       end
 
       it "should generate file with correct headers" do
-        CSVOperations.hash_to_csv(hash, path_to_file)
+        CSVHelper.hash_to_csv(hash, path_to_file)
         headers_from_csv = CSV.read(path_to_new_file)[0]
         expect(headers_from_csv).to eq(headers)
         File.delete(path_to_new_file)
       end
 
       it "should generate file with correct content" do
-        CSVOperations.hash_to_csv(hash, path_to_file)
+        CSVHelper.hash_to_csv(hash, path_to_file)
         content_from_csv = CSV.foreach(path_to_new_file).drop(1)
         expect(content_from_csv).to eq(content)
         File.delete(path_to_new_file)
@@ -228,7 +228,7 @@ describe "scv operations" do
       path_to_file = "11111111111111111111111.txt"
 
       it "should raise an error" do
-        expect{ CSVOperations.hash_to_csv(hash, path_to_file) }.to raise_error
+        expect{ CSVHelper.hash_to_csv(hash, path_to_file) }.to raise_error
       end
 
     end
@@ -236,7 +236,7 @@ describe "scv operations" do
     context "when arguments are not specified" do
 
       it "should raise an error" do
-        expect{ CSVOperations.write(nil, nil, nil) }.to raise_error
+        expect{ CSVHelper.write(nil, nil, nil) }.to raise_error
       end
 
     end
@@ -251,7 +251,7 @@ describe "scv operations" do
       correct_result = "example_foldex/example_file"
 
       it "should remove '.txt. postfix from filename'" do
-        expect(CSVOperations.remove_file_extension_from_(path)).to eq(correct_result)
+        expect(CSVHelper.remove_file_extension_from_(path)).to eq(correct_result)
       end
 
     end
@@ -261,7 +261,7 @@ describe "scv operations" do
       path = 124124124124
 
       it "should raise an error" do
-        expect{ CSVOperations.remove_file_extension_from_(path) }.to raise_error
+        expect{ CSVHelper.remove_file_extension_from_(path) }.to raise_error
       end
 
     end
@@ -269,7 +269,7 @@ describe "scv operations" do
     context "when arguments are not specified" do
 
       it "should raise an error" do
-        expect{ CSVOperations.remove_file_extension_from_(nil) }.to raise_error
+        expect{ CSVHelper.remove_file_extension_from_(nil) }.to raise_error
       end
 
     end

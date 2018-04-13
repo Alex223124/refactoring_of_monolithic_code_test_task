@@ -1,14 +1,3 @@
-require 'pry'
-
-require 'csv'
-require 'date'
-require "./lib/parsers/file_input_parser"
-require "./lib/ruby_std_lib_extensions/float.rb"
-require "./lib/ruby_std_lib_extensions/string.rb"
-require "./lib/ruby_std_lib_extensions/csv_operations"
-require "./lib/services/report_recalculation_service"
-require "./lib/services/rows_to_hash_service"
-
 class ModifierService
 
 	KEYWORD_UNIQUE_ID = 'Keyword Unique ID'.freeze
@@ -30,21 +19,21 @@ class ModifierService
 	# sorts the data from csv
 	def sort(file)
 		output = "#{file}.sorted"
-		content_as_table = CSVOperations.parse(file)
+		content_as_table = CSVHelper.parse(file)
 		headers = content_as_table.headers
 		index_of_key = headers.index('Clicks')
 		content = content_as_table.sort_by { |a| -a[index_of_key].to_i }
-		CSVOperations.write(content, headers, output)
+		CSVHelper.write(content, headers, output)
 		output
 	end
 
 	# recalculates the data from sorted csv and selects
 	# some data by conditions from ReportRecalculationService service
 	def recalculate(input)
-		array_of_lists = CSVOperations.to_array_converter(input)
+		array_of_lists = CSVHelper.to_array_converter(input)
 		merged_hashes = RowsToHashService.new(array_of_lists).run
 		recalculated_hash = combine_values_for_(merged_hashes)
-		CSVOperations.hash_to_csv(recalculated_hash, input)
+		CSVHelper.hash_to_csv(recalculated_hash, input)
 	end
 
 	private

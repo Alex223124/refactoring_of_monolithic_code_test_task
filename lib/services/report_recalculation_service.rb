@@ -1,5 +1,6 @@
 class ReportRecalculationService
   # recalculates and selects right data for report
+  # if we know target of this report -> we can rename it
 
   LAST_VALUE_WINS = ['Account ID', 'Account Name',
                      'Campaign', 'Ad Group', 'Keyword',
