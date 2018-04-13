@@ -9,7 +9,7 @@ describe "command line arguments parser" do
       ARGV = ["five", "1", "0.4"]
       arguments_parser = CommandLineArgumentsParser.new
 
-      it "should set instance varialbes correct values" do
+      it "should set instance varialbes with correct values" do
         expect(arguments_parser.directory).to eq("five")
         expect(arguments_parser.modification_factor).to eq(1)
         expect(arguments_parser.cancellaction_factor).to eq(0.4)
